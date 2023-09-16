@@ -3,6 +3,9 @@ package com.example.tut_5__6;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.view.ViewGroup;
  * Use the {@link fragment_selector#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class fragment_selector extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -23,6 +27,10 @@ public class fragment_selector extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    RecyclerView recycView;
+
+    Structure selectedStruct;
 
     public fragment_selector() {
         // Required empty public constructor
@@ -59,6 +67,28 @@ public class fragment_selector extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_selector, container, false);
+        View view =  inflater.inflate(R.layout.fragment_selector, container, false);
+        recycView = (RecyclerView) view.findViewById(R.id.selectorRecyclerView);
+
+        LinearLayoutManager gridLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+
+        recycView.setLayoutManager(gridLayoutManager);
+
+        StructureData data = StructureData.get();
+
+        ScrollCellAdapter adapter = new ScrollCellAdapter(data, this);
+        recycView.setAdapter(adapter);
+
+        return view;
+    }
+
+    public Structure getStructure()
+    {
+        return selectedStruct;
+    }
+
+    public void setStructure(Structure struct)
+    {
+        selectedStruct = struct;
     }
 }

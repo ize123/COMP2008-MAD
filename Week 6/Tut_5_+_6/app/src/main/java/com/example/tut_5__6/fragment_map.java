@@ -3,6 +3,8 @@ package com.example.tut_5__6;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,9 @@ public class fragment_map extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    RecyclerView recycView;
+    fragment_selector selectorFragment;
 
     public fragment_map() {
         // Required empty public constructor
@@ -59,6 +64,28 @@ public class fragment_map extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_map, container, false);
+        View view =  inflater.inflate(R.layout.fragment_map, container, false);
+
+        recycView = (RecyclerView) view.findViewById(R.id.mapRecyclerView);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), MapData.HEIGHT, GridLayoutManager.HORIZONTAL, false);
+
+        recycView.setLayoutManager(gridLayoutManager);
+
+        MapData data = MapData.get();
+
+        GridCellAdapter adapter = new GridCellAdapter(data, this);
+        recycView.setAdapter(adapter);
+
+        return view;
+    }
+
+    public void setSelectorFragment(fragment_selector fragment)
+    {
+        this.selectorFragment = fragment;
+    }
+    public Structure retrieveStruct()
+    {
+        return selectorFragment.getStructure();
     }
 }
