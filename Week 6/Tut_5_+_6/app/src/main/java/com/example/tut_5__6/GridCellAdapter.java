@@ -48,6 +48,7 @@ public class GridCellAdapter extends RecyclerView.Adapter<GridCellVH> {
                 {
                     //Set the structure on the map here -- unsure how to do yet
                     Log.d("Values: ", fragment.retrieveStruct().getLabel());
+                    holder.structure.setImageResource(fragment.retrieveStruct().getDrawableId());
                 }
             }
         });

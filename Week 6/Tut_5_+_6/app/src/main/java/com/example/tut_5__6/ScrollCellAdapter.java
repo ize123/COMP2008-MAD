@@ -1,6 +1,7 @@
 package com.example.tut_5__6;
 
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,8 @@ public class ScrollCellAdapter extends RecyclerView.Adapter<ScrollCellVH>{
             }
         });
     }
+
+
 
     @Override
     public int getItemCount() {

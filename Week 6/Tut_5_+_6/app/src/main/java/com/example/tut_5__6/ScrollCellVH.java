@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ScrollCellVH extends RecyclerView.ViewHolder {
     public ImageView image;
     public TextView text;
+    public ImageView selectImage;
 
     public ScrollCellVH(@NonNull View itemView, ViewGroup parent)
     {
         super(itemView);
         image = itemView.findViewById(R.id.selectorImage);
         text = itemView.findViewById(R.id.selectorText);
+        selectImage = itemView.findViewById(R.id.selectedImage);
     }
 }

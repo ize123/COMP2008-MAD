@@ -24,4 +24,5 @@ public class Structure
     {
         return label;
     }
+
 }
